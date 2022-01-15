@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+      rel="stylesheet"
+    />
+
+    <title>자율지능시스템연구실(AISL)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <script type="text/javascript"></script>
+    <!--
+Ramayana CSS Template
+https://templatemo.com/tm-529-ramayana
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/css.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="assets/css/templatemo-style_viewpage.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/lightbox.css" />
+
+    <script>
+      // Initialize Cloud Firestore through Firebase
+      firebase.initializeApp({
+        apiKey: "AIzaSyDfQofvlUKDalB3J0V4A2aLKQ2zH-JMl8o",
+        authDomain: "aislhomepage.firebaseapp.com",
+        storageBucket: "gs://aislhomepage.appspot.com/",
+        projectId: "aislhomepage",
+      });
+      var object;
+      var count = 1;
+
+      var db = firebase.firestore();
+      db.collection("publication")
+        .orderBy("timeline", "desc")
+        .get()
+        .then((result) => {
+          result.forEach((allDoc) => {
+            console.log(allDoc.data());
+            $("#num_" + count).ready(function () {
+              var date;
+              var text_num = $(
+                '<div class="num" id="num_' + count + '">' + count + "</div>"
+              );
+              var title_span = $(
+                '<a href="publicationview.html">글 제목이 들어갑니다.</a>'
+              );
+              var text_title = $(
+                '<div class="title" style="cursor:pointer;" id="title_' +
+                  count +
+                  '" onclick="acyncMovePage(this)"></div>'
+              );
+              $("title_" + count).ready(function () {
+                $("#title_" + count).append(title_span);
+              });
+              var text_writer = $(
+                '<div class="writer" id="writer_' + count + '">김이름</div>'
+              );
+              var text_date = $(
+                '<div class="date" id="date_' + count + '">2021.1.15</div>'
+              );
+              var text_publisher = $(
+                '<div class="publisher" id="publisher_' +
+                  count +
+                  '">2021.1.15</div>'
+              );
+              var div = $("<div id=text_" + count + "><div>");
+              $("text_" + count).ready(function () {
+                $("#text_" + count).empty();
+              });
+              $("#board_list_box").append(div);
+              $("text_" + count).ready(function () {
+                $("#text_" + count).append(text_num);
+                $("#text_" + count).append(text_title);
+                $("#text_" + count).append(text_writer);
+                $("#text_" + count).append(text_date);
+                $("#text_" + count).append(text_publisher);
+              });
+
+              $("#num_" + count).ready(function () {
+                document.getElementById("num_" + String(count)).innerHTML =
+                  allDoc.data()["timeline"];
+                document.getElementById("title_" + String(count)).innerHTML =
+                  allDoc.data()["title"];
+                date = String(
+                  allDoc.data()["year"] +
+                    "." +
+                    allDoc.data()["month"] +
+                    "." +
+                    allDoc.data()["day"]
+                );
+                document.getElementById("date_" + String(count)).innerHTML =
+                  date;
+                document.getElementById(
+                  "publisher_" + String(count)
+                ).innerHTML = allDoc.data()["publisher"];
+                document.getElementById("writer_" + String(count)).innerHTML =
+                  allDoc.data()["writer"];
+                count += 1;
+              });
+            });
+          });
+        });
+    </script>
+    <script type="text/javascript">
+      // ajax option
+      var ajaxOption = {
+        url: "https://aislhomepage.web.app/publicationview.html",
+        header: "application/x-www-form-urlencoded",
+        timeout: 0,
+      };
+      function acyncMovePage(tagID) {
+        var title = document.getElementById(tagID.id).innerHTML;
+        var text_db = firebase.firestore();
+        $.ajax(ajaxOption)
+          .done(function (resp) {
+            // Contents 영역 삭제
+            $("#board_list_box").children().remove();
+            // Contents 영역 교체
+            $("#board_list_box").html(resp);
+          })
+          .done(function (a) {
+            db.collection("publication")
+              .where("title", "==", title)
+              .get()
+              .then((result) => {
+                result.forEach((allDoc) => {
+                  $(document).ready(function () {
+                    document.getElementById("selected_title").innerHTML =
+                      allDoc.data()["title"];
+                    document.getElementById("selected_timeline").innerHTML =
+                      allDoc.data()["timeline"];
+                    date = String(
+                      allDoc.data()["year"] +
+                        "." +
+                        allDoc.data()["month"] +
+                        "." +
+                        allDoc.data()["day"]
+                    );
+                    document.getElementById("selected_date").innerHTML = date;
+                    var publication_content =
+                      "저자: " +
+                      allDoc.data()["author"] +
+                      "</br></br>" +
+                      '<a href="' +
+                      allDoc.data()["content"] +
+                      '">' +
+                      allDoc.data()["content"] +
+                      "</a>";
+                    document.getElementById("selected_content").innerHTML =
+                      publication_content;
+                    document.getElementById("selected_writer").innerHTML =
+                      allDoc.data()["writer"];
+                    document.getElementById("selected_publisher").innerHTML =
+                      allDoc.data()["publisher"];
+                  });
+                });
+              });
+          });
+      }
+    </script>
+  </head>
+
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <!-- Header 글씨 옆에 로고 사진 넣기 -->
+          <header id="header">
+            <div class="logo">
+              <a href="index.html">AISL</a>
+              <img
+                src="assets/images/sejong_2.png"
+                style="width: 50px; height: 50px"
+              />
+            </div>
+          </header>
+
+          <!-- 여기서부터 주 내용 -->
+          <div class="row">
+            <div class="asign-arch">
+              <div class="arch-describe">
+                <div class="board_wrap">
+                  <div class="board_title">
+                    <strong>publication</strong>
+                  </div>
+                  <div class="board_list_wrap">
+                    <div class="board_list" id="board_list_box">
+                      <div class="top">
+                        <div class="num">번호</div>
+                        <div class="title">제목</div>
+                        <div class="writer">글쓴이</div>
+                        <div class="date">작성일</div>
+                        <div class="count">논문구분</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--row 닫기-->
+          </div>
+          <!--inner 닫기-->
+        </div>
+        <!--main 닫기-->
+      </div>
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <div class="inner">
+          <!-- Search Box 실행 안 됨 -->
+          <!-- <section id="search" class="alt">
+              <form method="get" action="#">
+                <input type="text" name="search" id="search" placeholder="Search..." />
+              </form>
+            </section>
+               -->
+          <!-- Menu 안에 무슨 내용 적을건지 팀별로 A4로 구성해서 달라고 하기 -->
+          <nav id="menu">
+            <ul>
+              <li><a href="index.html"> Homepage</a></li>
+
+              <li><a href="members_page.html"> Members</a></li>
+              <!-- <li><a href="shortcodes.html">Shortcodes</a></li> -->
+
+              <li>
+                <a class="opener"> Research and development</a>
+                <ul>
+                  <li>
+                    <a href="metaverse.html">Metaverse Autonomous Twin</a>
+                  </li>
+                  <li><a href="radar.html">Intelligent Radar</a></li>
+                  <li><a href="battery.html">Intelligent Battery</a></li>
+                  <li><a href="aistar.html">AI STAR</a></li>
+                  <li><a href="wifi.html">Wifi fingerprinting</a></li>
+                  <li><a href="hanjeon.html">ELK</a></li>
+                </ul>
+              </li>
+              <li><a href="publication.html"> Publication</a></li>
+              <li><a href="contest.html"> Contest</a></li>
+              <li><a href="list.html"> News</a></li>
+              <!-- 페이지 새탭에서 열리기 기능 추가 -->
+              <li id="emogi">
+                <div class="sns_links">
+                  <a
+                    class="fa fa-github"
+                    href="https://github.com/AISL-Sejong"
+                    target="_blank"
+                  ></a>
+                  <a
+                    class="fa fa-youtube"
+                    href="https://www.youtube.com/channel/UCISnzdj3BsQelWVFzyy35Jg/featured"
+                    target="_blank"
+                  >
+                  </a>
+                  <a
+                    class="fa fa-instagram"
+                    href="https://instagram.com/aisl._.sejong.univ/"
+                    target="_blank"
+                  ></a>
+                </div>
+              </li>
+              <li id="emogi"></li>
+            </ul>
+          </nav>
+
+          <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">
+              Copyright &copy; 2021 AISL
+              <!-- <br>Designed by <a rel="nofollow" href="https://www.facebook.com/templatemo">Template Mo</a></p> -->
+            </p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+  </body>
+</html>

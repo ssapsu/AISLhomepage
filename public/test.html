@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/css.css" />
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfQofvlUKDalB3J0V4A2aLKQ2zH-JMl8o",
+      authDomain: "aislhomepage.firebaseapp.com",
+      databaseURL:
+        "https://aislhomepage-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "aislhomepage",
+      storageBucket: "aislhomepage.appspot.com",
+      messagingSenderId: "804180620145",
+      appId: "1:804180620145:web:77f7cb61280c21735c3cd0",
+      measurementId: "G-6V61ZFZ49L",
+    };
+    // Initialize Cloud Firestore through Firebase
+    firebase.initializeApp({ firebaseConfig });
+    var storage = firebase.storage();
+    var pathReference = storage.ref(
+      "news/68CD50F3-0FF2-4928-95FB-2BABE6F8412F.jpeg"
+    );
+    console.log(pathReference);
+    var object;
+    var title =
+      "제 5회 국제 모비우스 개발자 대회(메타고속버스; 김민지, 김경환, 원주연 연구원)";
+    var count = 1;
+    var db = firebase.firestore();
+    db.collection("publication")
+      .orderBy("timeline", "desc")
+      .limit(5)
+      .get()
+      .then((result) => {
+        result.forEach((allDoc) => {
+          console.log(allDoc.data());
+        });
+      });
+  </script>
+
+  <body>
+    <div class="row">
+      <div class="asign-arch">
+        <div class="arch-describe">
+          <div class="board_wrap">
+            <div class="board_title">
+              <strong>공지사항</strong>
+              <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+            </div>
+            <div class="board_list_wrap">
+              <div class="board_list">
+                <div class="top">
+                  <div class="num">번호</div>
+                  <div class="title">제목</div>
+                  <div class="writer">글쓴이</div>
+                  <div class="date">작성일</div>
+                  <div class="count">조회</div>
+                </div>
+                <div>
+                  <div class="num" id="num_5">5</div>
+                  <div class="title" id="title_5">
+                    <a href="view.html">글 제목이 들어갑니다.</a>
+                  </div>
+                  <div class="writer" id="writer_5">김이름</div>
+                  <div class="date" id="date_5">2021.1.15</div>
+                  <div class="count" id="count_5">34</div>
+                </div>
+                <div>
+                  <div class="num" id="num_4">4</div>
+                  <div class="title" id="title_4">
+                    <a href="view.html">글 제목이 들어갑니다.</a>
+                  </div>
+                  <div class="writer" id="writer_4">김이름</div>
+                  <div class="date" id="date_4">2021.1.15</div>
+                  <div class="count" id="count_4">33</div>
+                </div>
+                <div>
+                  <div class="num" id="num_3">3</div>
+                  <div class="title" id="title_3">
+                    <a href="view.html">글 제목이 들어갑니다.</a>
+                  </div>
+                  <div class="writer" id="writer_3">김이름</div>
+                  <div class="date" id="date_3">2021.1.15</div>
+                  <div class="count" id="count_3">33</div>
+                </div>
+                <div>
+                  <div class="num" id="num_2">2</div>
+                  <div class="title" id="title_2">
+                    <a href="view.html">글 제목이 들어갑니다.</a>
+                  </div>
+                  <div class="writer" id="writer_2">김이름</div>
+                  <div class="date" id="date_2">2021.1.15</div>
+                  <div class="count" id="count_2">33</div>
+                </div>
+                <div>
+                  <div class="num" id="num_1">1</div>
+                  <div class="title" id="title_1">
+                    <a href="view.html">글 제목이 들어갑니다.</a>
+                  </div>
+                  <div class="writer" id="writer_1">김이름</div>
+                  <div class="date" id="date_1">2021.1.15</div>
+                  <div class="count" id="count_1">33</div>
+                </div>
+              </div>
+              <div class="board_page">
+                <a href="#" class="bt first"><<</a>
+                <a href="#" class="bt prev"><</a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+              </div>
+              <div class="bt_wrap">
+                <a href="write.html" class="on">등록</a>
+                <!--<a href="#">수정</a>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
