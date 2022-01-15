@@ -65,4 +65,5 @@ node_modules/
 # dotenv environment variables file
 .env
 
-assets/js/*.js
+public/assets/js/mailConfig.js
+public/assets/js/firebase.js
