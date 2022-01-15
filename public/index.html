@@ -418,9 +418,10 @@ https://templatemo.com/tm-529-ramayana
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
     ></script>
+    <script type="text/javascript" src="./assets/js/mailConfig.js"></script>
     <script type="text/javascript">
       (function () {
-        emailjs.init("user_3VOUO3tldG7hLXHhh2Za7");
+        emailjs.init(userID);
       })();
     </script>
     <script type="text/javascript">
@@ -430,7 +431,7 @@ https://templatemo.com/tm-529-ramayana
           .addEventListener("submit", function (event) {
             event.preventDefault();
             // these IDs from the previous steps
-            emailjs.sendForm("service_dmfgktn", "template_vltnb7u", this).then(
+            emailjs.sendForm(serviceID, templateID, this).then(
               function () {
                 alert("이메일을 보냈습니다!");
               },

@@ -36,44 +36,14 @@ https://templatemo.com/tm-529-ramayana
     <link rel="stylesheet" href="assets/css/templatemo-style_viewpage.css" />
     <link rel="stylesheet" href="assets/css/owl.css" />
     <link rel="stylesheet" href="assets/css/lightbox.css" />
+  </head>
 
+  <body class="is-preload">
+    <script type="text/javascript" src="./assets/js/firebase.js"></script>
     <script>
-      // Initialize Cloud Firestore through Firebase
-      firebase.initializeApp({
-        apiKey: "AIzaSyDfQofvlUKDalB3J0V4A2aLKQ2zH-JMl8o",
-        authDomain: "aislhomepage.firebaseapp.com",
-        // databaseURL:
-        // "https://aislhomepage-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "aislhomepage",
-        storageBucket: "gs://aislhomepage.appspot.com/",
-        // messagingSenderId: "804180620145",
-        // appId: "1:804180620145:web:77f7cb61280c21735c3cd0",
-        // measurementId: "G-6V61ZFZ49L",
-      });
-
-      // var storageRef = firebase
-      //   .storage()
-      //   .refFromURL(
-      //     "gs://aislhomepage.appspot.com/news/68CD50F3-0FF2-4928-95FB-2BABE6F8412F.jpeg"
-      //   )
-      //   .getDownloadURL()
-      //   .then((url) => {
-      //     // `url` is the download URL for 'images/stars.jpg'
-      //     console.log(url);
-      //     // Or inserted into an <img> element
-      //     var text_num = $('<img src="' + url + '"/img>');
-      //     var img = document.getElementById("selected_content");
-      //     $("selected_content").ready(function () {
-      //       $("#selcted_content").append(img);
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     // Handle any errors
-      //     console.log(error);
-      //   });
-
-      var count = 1;
+      firebase.initializeApp(firebaseConfig);
       var db = firebase.firestore();
+      var count = 1;
       db.collection("news")
         .orderBy("timeline", "desc")
         .get()
@@ -134,11 +104,9 @@ https://templatemo.com/tm-529-ramayana
             });
           });
         });
-    </script>
-    <script type="text/javascript">
+
       function acyncMovePage(tagID) {
         var title = document.getElementById(tagID.id).innerHTML;
-        var text_db = firebase.firestore();
         // ajax option
         var ajaxOption = {
           url: "https://aislhomepage.web.app/listview.html",
@@ -179,13 +147,13 @@ https://templatemo.com/tm-529-ramayana
                     var photoURL_1 = allDoc.data()["photoRefFromURL_1"];
 
                     $("#selected_content").ready(function () {
-                      var storageRef = firebase
+                      firebase
                         .storage()
                         .refFromURL(photoURL_1)
                         .getDownloadURL()
                         .then((url) => {
                           // `url` is the download URL for 'images/stars.jpg'
-                          console.log(url);
+                          // console.log(url);
                           // Or inserted into an <img> element
                           var img_1 = $('<img src="' + url + '"/img>');
                           $("selected_content").ready(function () {
@@ -200,13 +168,13 @@ https://templatemo.com/tm-529-ramayana
                     var photoURL_2 = allDoc.data()["photoRefFromURL_2"];
 
                     $("#selected_content").ready(function () {
-                      var storageRef = firebase
+                      firebase
                         .storage()
                         .refFromURL(photoURL_2)
                         .getDownloadURL()
                         .then((url) => {
                           // `url` is the download URL for 'images/stars.jpg'
-                          console.log(url);
+                          // console.log(url);
                           // Or inserted into an <img> element
                           var img_2 = $('<img src="' + url + '"/img>');
                           $("selected_content").ready(function () {
@@ -223,9 +191,6 @@ https://templatemo.com/tm-529-ramayana
           });
       }
     </script>
-  </head>
-
-  <body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Main -->

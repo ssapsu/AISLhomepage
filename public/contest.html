@@ -37,14 +37,10 @@ https://templatemo.com/tm-529-ramayana
     <link rel="stylesheet" href="assets/css/owl.css" />
     <link rel="stylesheet" href="assets/css/lightbox.css" />
 
+    <script type="text/javascript" src="./assets/js/firebase.js"></script>
     <script>
       // Initialize Cloud Firestore through Firebase
-      firebase.initializeApp({
-        apiKey: "AIzaSyDfQofvlUKDalB3J0V4A2aLKQ2zH-JMl8o",
-        storageBucket: "aislhomepage.appspot.com",
-        authDomain: "aislhomepage.firebaseapp.com",
-        projectId: "aislhomepage",
-      });
+      firebase.initializeApp(firebaseConfig);
       var object;
       var count = 1;
 
@@ -89,67 +85,66 @@ https://templatemo.com/tm-529-ramayana
             });
           });
         });
-    </script>
-    <script type="text/javascript">
-      function acyncMovePage(tagID) {
-        var title = document.getElementById(tagID.id).innerHTML;
-        var text_db = firebase.firestore();
-        // ajax option
-        var ajaxOption = {
-          url: "https://aislhomepage.web.app/contestview.html",
-          header: "application/x-www-form-urlencoded",
-          timeout: 0,
-        };
-        $.ajax(ajaxOption).done(function (resp) {
-          // Contents 영역 삭제
-          $("#board_list_box").children().remove();
-          // Contents 영역 교체
-          $("#board_list_box").html(resp);
-        }).done(function(a){
-          db.collection("contest")
-          .where("title", "==", title)
-          .get()
-          .then((result) => {
-            result.forEach((allDoc) => {
-              $("#selected_title").ready(function () {
-                  document.getElementById("selected_title").innerHTML = allDoc.data()["title"];
-                  document.getElementById("selected_timeline").innerHTML = allDoc.data()["timeline"];
-                  date = String(allDoc.data()["year"] + "." + allDoc.data()["month"] + "." + allDoc.data()["day"]);
-                  document.getElementById("selected_date").innerHTML = date;
-                  var publication_content = "주최측: "+allDoc.data()["host"]+"</br></br>"+
-                                            "수상: "+allDoc.data()["awards"]+"</br></br>"+
-                                            "팀이름: "+allDoc.data()["teamname"]+"</br></br>"+
-                                            "구성원: "+allDoc.data()["members"]+"</br></br>"+
-                                            "프로젝트 이름: "+allDoc.data()["projectname"]+"</br></br>"+
-                                            "프로젝트 설명: "+allDoc.data()["project description"]+"</br></br>";
-                  document.getElementById("selected_content").innerHTML =publication_content;
-                  document.getElementById("selected_writer").innerHTML = allDoc.data()["writer"];
 
-                  var photoURL = allDoc.data()["photoRefFromURL_1"];
-
-                  $("#selected_content").ready(function () {
-                    var storageRef = firebase
-                      .storage()
-                      .refFromURL(photoURL)
-                      .getDownloadURL()
-                      .then((url) => {
-                        // `url` is the download URL for 'images/stars.jpg'
-                        console.log(url);
-                        // Or inserted into an <img> element
-                        var img_1 = $('<img src="' + url + '" style="width :100%; height : 100%" /img>');
-                        $("selected_content").ready(function () {
-                          $("#selected_content").append(img_1);
+        function acyncMovePage(tagID) {
+          var title = document.getElementById(tagID.id).innerHTML;
+          var text_db = firebase.firestore();
+          // ajax option
+          var ajaxOption = {
+            url: "https://aislhomepage.web.app/contestview.html",
+            header: "application/x-www-form-urlencoded",
+            timeout: 0,
+          };
+          $.ajax(ajaxOption).done(function (resp) {
+            // Contents 영역 삭제
+            $("#board_list_box").children().remove();
+            // Contents 영역 교체
+            $("#board_list_box").html(resp);
+          }).done(function(a){
+            db.collection("contest")
+            .where("title", "==", title)
+            .get()
+            .then((result) => {
+              result.forEach((allDoc) => {
+                $("#selected_title").ready(function () {
+                    document.getElementById("selected_title").innerHTML = allDoc.data()["title"];
+                    document.getElementById("selected_timeline").innerHTML = allDoc.data()["timeline"];
+                    date = String(allDoc.data()["year"] + "." + allDoc.data()["month"] + "." + allDoc.data()["day"]);
+                    document.getElementById("selected_date").innerHTML = date;
+                    var publication_content = "주최측: "+allDoc.data()["host"]+"</br></br>"+
+                                              "수상: "+allDoc.data()["awards"]+"</br></br>"+
+                                              "팀이름: "+allDoc.data()["teamname"]+"</br></br>"+
+                                              "구성원: "+allDoc.data()["members"]+"</br></br>"+
+                                              "프로젝트 이름: "+allDoc.data()["projectname"]+"</br></br>"+
+                                              "프로젝트 설명: "+allDoc.data()["project description"]+"</br></br>";
+                    document.getElementById("selected_content").innerHTML =publication_content;
+                    document.getElementById("selected_writer").innerHTML = allDoc.data()["writer"];
+  
+                    var photoURL = allDoc.data()["photoRefFromURL_1"];
+  
+                    $("#selected_content").ready(function () {
+                      var storageRef = firebase
+                        .storage()
+                        .refFromURL(photoURL)
+                        .getDownloadURL()
+                        .then((url) => {
+                          // `url` is the download URL for 'images/stars.jpg'
+                          // console.log(url);
+                          // Or inserted into an <img> element
+                          var img_1 = $('<img src="' + url + '" style="width :100%; height : 100%" /img>');
+                          $("selected_content").ready(function () {
+                            $("#selected_content").append(img_1);
+                          });
+                        })
+                        .catch((error) => {
+                          // Handle any errors
                         });
-                      })
-                      .catch((error) => {
-                        // Handle any errors
-                      });
+                    });
                   });
-                });
+              });
             });
-          });
-        })
-      }
+          })
+        }
     </script>
   </head>
 

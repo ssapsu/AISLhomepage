@@ -35,15 +35,13 @@ https://templatemo.com/tm-529-ramayana
     <link rel="stylesheet" href="assets/css/templatemo-style_viewpage.css" />
     <link rel="stylesheet" href="assets/css/owl.css" />
     <link rel="stylesheet" href="assets/css/lightbox.css" />
+  </head>
 
+  <body class="is-preload">
+    <script type="text/javascript" src="./assets/js/firebase.js"></script>
     <script>
       // Initialize Cloud Firestore through Firebase
-      firebase.initializeApp({
-        apiKey: "AIzaSyDfQofvlUKDalB3J0V4A2aLKQ2zH-JMl8o",
-        authDomain: "aislhomepage.firebaseapp.com",
-        storageBucket: "gs://aislhomepage.appspot.com/",
-        projectId: "aislhomepage",
-      });
+      firebase.initializeApp(firebaseConfig);
       var object;
       var count = 1;
 
@@ -53,7 +51,6 @@ https://templatemo.com/tm-529-ramayana
         .get()
         .then((result) => {
           result.forEach((allDoc) => {
-            console.log(allDoc.data());
             $("#num_" + count).ready(function () {
               var date;
               var text_num = $(
@@ -118,8 +115,7 @@ https://templatemo.com/tm-529-ramayana
             });
           });
         });
-    </script>
-    <script type="text/javascript">
+
       // ajax option
       var ajaxOption = {
         url: "https://aislhomepage.web.app/publicationview.html",
@@ -176,9 +172,6 @@ https://templatemo.com/tm-529-ramayana
           });
       }
     </script>
-  </head>
-
-  <body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Main -->
