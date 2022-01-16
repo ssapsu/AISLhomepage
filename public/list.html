@@ -114,6 +114,7 @@ https://templatemo.com/tm-529-ramayana
         };
         $.ajax(ajaxOption)
           .done(function (resp) {
+            history.pushState(null, null, "/list.html");
             // Contents 영역 삭제
             $("#board_list_box").children().remove();
             // Contents 영역 교체
@@ -188,6 +189,9 @@ https://templatemo.com/tm-529-ramayana
                 });
               });
           });
+        $(window).on("popstate", function (event) {
+          window.location = document.location.href;
+        });
       }
     </script>
     <!-- Wrapper -->
