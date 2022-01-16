@@ -1510,7 +1510,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch-title {
-  width: 800px;
+  width: 100vh;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -1518,7 +1518,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch {
-  width: 800px;
+  width: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1536,7 +1536,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch {
-  width: 800px;
+  width: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1545,7 +1545,7 @@ figure.snip1321.hover:after {
 }
 
 .arch-describe {
-  width: 800px;
+  width: 100vh;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -1566,20 +1566,20 @@ figure.snip1321.hover:after {
   }
 
   .arch-describe {
-    width: 100%;
+    width: 100vh;
     padding: 0;
     display: flex;
     justify-content: center;
   }
 
   .asign-arch {
-    width: 100%;
-
+    width: 100vh;
   }
 
-.con {
-  display: flex;
-  align-items: center;
+  .con {
+    display: flex;
+    align-items: center;
+  }
 }
 
 #contact {
