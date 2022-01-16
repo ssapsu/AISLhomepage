@@ -292,10 +292,10 @@ https://templatemo.com/tm-529-ramayana
                 <div class="col-md-6">
                   <div id="map">
                     <!-- How to change your own map point
-                                       1. Go to Google Maps
-                                       2. Click on your location point
-                                       3. Click "Share" and choose "Embed map" tab
-                                       4. Copy only URL and paste it within the src="" field below
+                                      1. Go to Google Maps
+                                      2. Click on your location point
+                                      3. Click "Share" and choose "Embed map" tab
+                                      4. Copy only URL and paste it within the src="" field below
                                 -->
 
                     <iframe
@@ -433,16 +433,22 @@ https://templatemo.com/tm-529-ramayana
           .addEventListener("submit", function (event) {
             event.preventDefault();
             // these IDs from the previous steps
-            emailjs.sendForm(serviceID, templateID, this).then(
-              function () {
-                alert("이메일을 보냈습니다!");
-              },
-              function (error) {
-                alert("에러코드: ", error);
-              }
-            );
+            emailjs
+              .sendForm(serviceID, templateID, this)
+              .then(
+                function () {
+                  alert("이메일을 보냈습니다!");
+                },
+                function (error) {
+                  alert("에러코드: ", error);
+                }
+              )
+              .then(resetForm());
           });
       };
+      function resetForm() {
+        document.getElementById("contact-form").reset();
+      }
     </script>
 
     <script src="vendor/jquery/jquery.min.js"></script>
