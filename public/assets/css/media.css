@@ -1,4 +1,4 @@
-@media (max-width: 1000px) {
+@media (max-width: 1000px), (min-width: 700px) {
   .board_wrap {
     width: 100%;
     min-width: 320px;
@@ -6,19 +6,22 @@
     box-sizing: border-box;
   }
 
-  .board_list .num,
+  /*
+    이 부분 활성화시키면 애들이 사라짐;
+  */
+  /* .board_list .num,
   .board_list .writer,
   .board_list .count {
     display: none;
-  }
+  } */
 
   .board_list .date {
-    width: 40%;
+    width: 10%;
   }
 
-  .board_list .title {
+  /* .board_list .title {
     text-indent: 10px;
-  }
+  } */
 
   .board_list .top .title {
     text-indent: 0;
@@ -38,7 +41,7 @@
   }
 
   .board_view .info dl {
-    width: 50%;
+    width: 100%;
     padding: 0;
   }
 
@@ -46,13 +49,13 @@
     margin-bottom: 5px;
   }
 
-  .board_view .info dl::before {
+  /* .board_view .info dl::before {
     display: none;
-  }
+  } */
 
   .board_view .info dl dt,
   .board_view .info dl dd {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .board_write .info dl {

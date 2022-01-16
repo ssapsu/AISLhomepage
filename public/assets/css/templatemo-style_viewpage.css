@@ -1144,9 +1144,9 @@ section.buttons .container-fluid {
     margin-bottom: 40px;
     margin-right: 0px;
   }
-  .main-banner {
+  /* .main-banner {
     text-align: center;
-  }
+  } */
   .main-banner .banner-content .banner-caption {
     padding: 30px;
   }
@@ -1510,7 +1510,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch-title {
-  width: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -1518,7 +1518,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch {
-  width: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1536,7 +1536,7 @@ figure.snip1321.hover:after {
 }
 
 .asign-arch {
-  width: 100vh;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1545,7 +1545,7 @@ figure.snip1321.hover:after {
 }
 
 .arch-describe {
-  width: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -1553,27 +1553,27 @@ figure.snip1321.hover:after {
   font-size: 13px;
 }
 .arch {
-  width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 800px) {
+@media only screen and (min-width: 300px) and (max-width: 500px) {
   .asign-arch-title {
     width: 100%;
   }
 
   .arch-describe {
-    width: 100vh;
-    padding: 0;
+    min-width: 800px;
+    padding: 0 0 0 185px;
     display: flex;
     justify-content: center;
   }
 
   .asign-arch {
-    width: 100vh;
+    width: 800px;
   }
 
   .con {

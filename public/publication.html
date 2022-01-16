@@ -54,21 +54,27 @@ https://templatemo.com/tm-529-ramayana
             $("#num_" + count).ready(function () {
               var date, month, year, day;
               var text_num = $(
-                '<div class="num" id="num_' + count + '">' + count + "</div>"
+                '<div class="num" id="num_' +
+                  count +
+                  '" style = "width: 5%">' +
+                  count +
+                  "</div>"
               );
               var title_span = $(
                 '<a href="publicationview.html">글 제목이 들어갑니다.</a>'
               );
               var text_title = $(
-                '<div class="title" style="cursor:pointer;" id="title_' +
+                '<div class="title" style="cursor:pointer; word-break: keep-all" id="title_' +
                   count +
-                  '" onclick="acyncMovePage(this)"></div>'
+                  '" onclick="acyncMovePage(this)" ></div>'
               );
               $("title_" + count).ready(function () {
                 $("#title_" + count).append(title_span);
               });
               var text_writer = $(
-                '<div class="writer" id="writer_' + count + '">김이름</div>'
+                '<div class="writer" id="writer_' +
+                  count +
+                  '" style="word-break: keep-all">김이름</div>'
               );
               var text_date = $(
                 '<div class="date" id="date_' + count + '">2021.1.15</div>'
@@ -76,7 +82,7 @@ https://templatemo.com/tm-529-ramayana
               var text_publisher = $(
                 '<div class="publisher" id="publisher_' +
                   count +
-                  '">2021.1.15</div>'
+                  '" style = "text-align:center; width: 15%;">2021.1.15</div>'
               );
               var div = $("<div id=text_" + count + "><div>");
               $("text_" + count).ready(function () {
@@ -197,25 +203,32 @@ https://templatemo.com/tm-529-ramayana
           <section class="main-banner">
             <div class="container-fluid">
               <div class="row">
-                <div class="asign-arch">
-                  <div class="arch-describe">
-                    <div class="board_wrap">
-                      <div class="board_title">
-                        <strong>Publication</strong>
-                      </div>
-                      <div class="board_list_wrap">
-                        <div class="board_list" id="board_list_box">
-                          <div class="top">
-                            <div class="num">번호</div>
-                            <div class="title">제목</div>
-                            <div class="writer">글쓴이</div>
-                            <div class="date">작성일</div>
-                            <div class="count">논문구분</div>
+                <div class="asign-arch" style="width: 100%; overflow: auto">
+                  <table
+                    class="table"
+                    style="border-collapse: inherit; width: 100%"
+                    border="1"
+                    data-ke-style="style14"
+                  >
+                    <div class="arch-describe">
+                      <div class="board_wrap">
+                        <div class="board_title">
+                          <strong>Publication</strong>
+                        </div>
+                        <div class="board_list_wrap">
+                          <div class="board_list" id="board_list_box">
+                            <div class="top">
+                              <div class="num">번호</div>
+                              <div class="title">제목</div>
+                              <div class="writer">글쓴이</div>
+                              <div class="date">작성일</div>
+                              <div class="count">논문구분</div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </table>
                 </div>
                 <!--row 닫기-->
               </div>

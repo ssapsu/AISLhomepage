@@ -14,7 +14,7 @@ a {
 }
 
 .board_wrap {
-  width: 100%;
+  width: 800px;
   margin: 100px auto;
 }
 
@@ -23,7 +23,7 @@ a {
 }
 
 .board_title strong {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .board_title p {
@@ -78,7 +78,7 @@ a {
   display: inline-block;
   padding: 15px 0;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 }
 
 .board_list > div.top > div {
@@ -86,11 +86,11 @@ a {
 }
 
 .board_list .num {
-  width: 10%;
+  width: 5%;
 }
 
 .board_list .title {
-  width: 60%;
+  width: 55%;
   text-align: left;
 }
 
@@ -99,7 +99,7 @@ a {
 }
 
 .board_list .writer {
-  width: 10%;
+  width: 15%;
 }
 
 .board_list .date {
@@ -107,7 +107,7 @@ a {
 }
 
 .board_list .count {
-  width: 10%;
+  width: 15%;
 }
 
 .board_page {
