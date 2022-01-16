@@ -152,6 +152,8 @@ a {
   width: 100%;
   border-top: 1.5px solid #000;
   align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .board_view .title {
