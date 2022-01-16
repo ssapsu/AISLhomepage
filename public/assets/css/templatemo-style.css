@@ -1445,17 +1445,32 @@ figure.snip1321 figcaption {
   position: absolute;
   opacity: 0;
   z-index: 1;
+  word-break: break-all;
 }
+
 figure.snip1321 h4 {
   margin-top: 15px;
   margin-bottom: 5px;
   color: #232323;
+  word-break: keep-all;
 }
 figure.snip1321 span {
   font-size: 20px;
   font-style: italic;
   display: block;
+  text-align: center;
   color: #7a7a7a;
+}
+@media (max-width: 600px) {
+  figure.snip1321 span {
+    font-size: 8px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+  figure.snip1321 h4 {
+    margin-top: 5px;
+  }
 }
 figure.snip1321 i {
   position: relative !important;
