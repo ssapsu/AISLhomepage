@@ -152,8 +152,6 @@ a {
   width: 100%;
   border-top: 1.5px solid #000;
   align-items: center;
-  display: flex;
-  justify-content: space-between;
 }
 
 .board_view .title {
@@ -166,6 +164,8 @@ a {
   padding: 15px;
   border-bottom: 1px solid #999;
   font-size: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .board_view .info dl {
