@@ -50,7 +50,7 @@ https://templatemo.com/tm-529-ramayana
         .then((result) => {
           result.forEach((allDoc) => {
             $("#num_" + count).ready(function () {
-              var date;
+              var date, year, month, day;
               var text_num = $(
                 '<div class="num" id="num_' + count + '">' + count + "</div>"
               );
@@ -88,13 +88,12 @@ https://templatemo.com/tm-529-ramayana
                   allDoc.data()["timeline"];
                 document.getElementById("title_" + String(count)).innerHTML =
                   allDoc.data()["title"];
-                date = String(
-                  allDoc.data()["year"] +
-                    "." +
-                    allDoc.data()["month"] +
-                    "." +
-                    allDoc.data()["day"]
-                );
+                year = String(allDoc.data()["year"]);
+                month = String(allDoc.data()["month"]);
+                day = String(allDoc.data()["day"]);
+                if (allDoc.data()["month"] < 10) month = String("0" + month);
+                if (allDoc.data()["day"] < 10) day = String("0" + day);
+                date = year + "." + month + "." + day;
                 document.getElementById("date_" + String(count)).innerHTML =
                   date;
                 document.getElementById("writer_" + String(count)).innerHTML =
