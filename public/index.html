@@ -433,20 +433,20 @@ https://templatemo.com/tm-529-ramayana
           .addEventListener("submit", function (event) {
             event.preventDefault();
             // these IDs from the previous steps
-            emailjs
-              .sendForm(serviceID, templateID, this)
-              .then(
-                function () {
-                  alert("이메일을 보냈습니다!");
-                },
-                function (error) {
-                  alert("에러코드: ", error);
-                }
-              )
-              .then(resetForm());
+            emailjs.sendForm(serviceID, templateID, this).then(
+              function () {
+                alert("이메일을 보냈습니다!");
+                resetForm();
+              },
+              function (error) {
+                alert("에러코드: ", error);
+                resetForm();
+              }
+            );
           });
       };
       function resetForm() {
+        setTimeout(1000);
         document.getElementById("contact-form").reset();
       }
     </script>
