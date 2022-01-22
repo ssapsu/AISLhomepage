@@ -20,10 +20,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.12.4.min.js"
-    ></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript"></script>
     <!--
 Ramayana CSS Template
@@ -37,64 +34,9 @@ https://templatemo.com/tm-529-ramayana
     <link rel="stylesheet" href="assets/css/owl.css" />
     <link rel="stylesheet" href="assets/css/lightbox.css" />
 
-    <script type="text/javascript" src="./assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/firebaseFunc.js"></script>
+
     <script>
-      // Initialize Cloud Firestore through Firebas
-      var currentTime = Date.now();
-      firebase.initializeApp(firebaseConfig);
-      var object;
-      var count = 1;
-      var db = firebase.firestore();
-      var currentTimeMillis = Date.now();
-      console.log(currentTimeMillis-currentTime);
-      db.collection("contest")
-        .orderBy("timeline",'desc')
-        .get()
-        .then((result) => {
-          result.forEach((allDoc) => {
-            var currentTimeMillis2 =Date.now();
-            console.log(currentTimeMillis2-currentTimeMillis); 
-            $('#num_'+count).ready(function(){
-              var date,year,month,day;
-
-              var text_num = $('<div class="num" id="num_' + count + '">' + count + "</div>");
-              var title_span = $('<a href="contestview.html"></a>');
-              var text_title = $('<div class="title" style="cursor:pointer;" id="title_' + count + '" onclick="acyncMovePage(this)"></div>');
-              $("title_" + count).ready(function () {
-                $("#title_" + count).append(title_span);
-              });
-              var text_writer = $('<div class="writer" id="writer_' + count + '"></div>');
-              var text_date = $('<div class="date" id="date_' + count + '"></div>');
-              var div = $("<div id=text_" + count + "><div>");
-              $('text_'+count).ready(function(){
-                $('#text_'+count).empty();
-              })
-              $("#board_list_box").append(div);
-              $('text_'+count).ready(function(){
-                $("#text_" + count).append(text_num);
-                $("#text_" + count).append(text_title);
-                $("#text_" + count).append(text_writer);
-                $("#text_" + count).append(text_date);
-              });
-
-              $('#num_'+count).ready(function () {
-                document.getElementById("num_" + String(count)).innerHTML = allDoc.data()["timeline"];
-                document.getElementById("title_" + String(count)).innerHTML = allDoc.data()["title"];
-                year = String(allDoc.data()["year"]);
-                month = String(allDoc.data()["month"]);
-                day = String(allDoc.data()["day"]);
-                if (allDoc.data()["month"] < 10) month = String("0" + month);
-                if (allDoc.data()["day"] < 10) day = String("0" + day);
-                date = year + "." + month + "." + day;
-                document.getElementById("date_" + String(count)).innerHTML = date;
-                document.getElementById("writer_" + String(count)).innerHTML = allDoc.data()["writer"];
-                count += 1;
-              });
-
-            });
-          });
-        });
-
         function acyncMovePage(tagID) {
           var title = document.getElementById(tagID.id).innerHTML;
           var text_db = firebase.firestore();
